@@ -1,0 +1,105 @@
+body{
+    background-color: blue;
+    margin: auto;
+    width: 960px;
+}
+
+.todo_list{
+    background-color:white;
+    margin-top: 50%;
+    border-radius: 10px;
+    height: 250px;
+    width:1000px;
+}
+
+.todo_list h1{
+    padding-left: 5%;
+}
+
+.create_button{
+    font-size: 12px;
+    font-weight: bolder;
+    margin-left: 3%;
+    padding: 0.7% 1.8%;
+    border-radius: 5px;
+    border-color: purple;
+    background-color: white;
+    color: purple;
+}
+
+.create_button:hover{
+    background: pink;
+    display: inline-block;
+    color: white;
+}
+
+.todo_text{
+    font-size :100%;
+    width: 80%;
+    margin-left: 5%;
+    height: 30px;
+    border: 1px solid;
+}
+
+.text{
+    display: flex;
+    border-width: thick;
+}
+
+.time{
+    padding-left: 10%;
+}
+
+.task{
+    text-align: center;
+    padding-left: 10%;
+}
+
+.task_name{
+    width: 400px;
+    height: 30px;
+    border: 1px solid;
+    font-size :100%;
+}
+
+.update{
+    padding-left: 15%;
+}
+
+.update_buttom{
+    font-size: 12px;
+    width: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    border-color: orange;
+    background-color: white;
+    color: orange;
+}
+
+.update_buttom:hover{
+    background: orange;
+    display: inline-block;
+    color: white;
+}
+
+.delete{
+    padding-left: 5%;
+}
+
+.delete_buttom{
+    font-size: 12px;
+    width: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    border-color: skyblue;
+    background-color: white;
+    color: skyblue;
+}
+
+.delete_buttom:hover{
+    background: skyblue;
+    display: inline-block;
+    color: white;
+}
