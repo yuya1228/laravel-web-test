@@ -43,9 +43,8 @@ class TodoController extends Controller {
         Validator::make( $request->all(), $rules, $messages )->validate();
 
         $todo = new Todo;
-        $todo->text = $request->text;
-        $todo->content = $request->content;
-        $todos->save();
+        $todo->text = $request->input( 'todo_name' );
+        $todo->save();
         return redirect( ”/todos” );
     }
 
