@@ -25,7 +25,7 @@ class TodoController extends Controller {
     */
 
     public function create() {
-
+        return view('todos.create');
     }
 
     /**
@@ -43,9 +43,10 @@ class TodoController extends Controller {
         Validator::make( $request->all(), $rules, $messages )->validate();
 
         $todo = new Todo;
-        $todo->text = $request->input( 'todo_name' );
-        $todo->save();
-        return redirect( '/todos' );
+        $todo->text = $request->text;
+        $todo->content = $request->content;
+        $todos->save();
+        return redirect( ”/todos” );
     }
 
     /**

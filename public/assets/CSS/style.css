@@ -6,7 +6,7 @@ body{
 
 .todo_list{
     background-color:white;
-    margin-top: 50%;
+    margin-top: 46%;
     border-radius: 10px;
     height: 250px;
     width:1000px;
@@ -46,15 +46,6 @@ body{
     border-width: thick;
 }
 
-.time{
-    padding-left: 10%;
-}
-
-.task{
-    text-align: center;
-    padding-left: 10%;
-}
-
 .task_name{
     width: 400px;
     height: 30px;
@@ -62,8 +53,9 @@ body{
     font-size :100%;
 }
 
-.update{
-    padding-left: 15%;
+table{
+    border-spacing:  30px 20px ;
+    margin-left: 10%;
 }
 
 .update_buttom{
@@ -83,9 +75,6 @@ body{
     color: white;
 }
 
-.delete{
-    padding-left: 5%;
-}
 
 .delete_buttom{
     font-size: 12px;
