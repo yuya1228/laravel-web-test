@@ -40,13 +40,11 @@ class TodoController extends Controller {
         $rules = [
             'todo_name' => 'required|max:20',
         ];
-        $messages = [ 'required' => '入力必須です', 'max' => '20文字以下にしてください' ];
-        Validator::make( $request->all(), $rules, $messages )->validate();
 
-        $todo = new Todo;
+        $todo = new Todo();
         $todo->text = $request->input( 'todo_name' );
         $todo->save();
-        return redirect( '/todos' );
+        return redirect->route( 'todos.create' );
     }
 
     /**
@@ -82,8 +80,7 @@ class TodoController extends Controller {
     */
 
     public function update( Request $request, Todo $todo) {
-        $todo->title = $request->title;
-        $todo->content = $request->content;
+        $todo->text = $request->text;
         $todo->save();
         return redirect("/todos/{$todo->id}");
     }

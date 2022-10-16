@@ -13,8 +13,6 @@
 <body>
     <div class="todo_list">
         <h1>Todo List</h1>
-        <form action="{{ route('todo.create') }}" method="POST">
-            @csrf
             @error('todo_name')
                 {{ $message }}
             @enderror
@@ -22,7 +20,6 @@
                 <input type="text" name="todo_name" class="todo_text">
                 <button type="submit" class="create_button">追加</button>
             </div>
-        </form>
         <table>
             <tr>
                 <th>作成日</th>
@@ -30,22 +27,17 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
-                <tr>
-                    @foreach ($todos as $todo)
+            <tr>
+                @foreach ($todos as $todo)
                     <td>{{ \Carbon\Carbon::now() }}</td>
-                    <td><input type="text" class="task_name">
-                        <form action="{{ route('todo.create') }}" method="post">
-                            @csrf
-                            @method('POST')
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{ route('todo.update', $todo->id) }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <button type="submit" class="update_buttom">更新</button>
-                        </form>
-                    </td>
+                    <form action="{{ route('todo.update', $todo->id) }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <td><input type="text" value="{{ $todo->text }}" class="task_name">
+                        </td>
+                        <td><button type="submit" class="update_buttom">更新</button>
+                        </td>
+                    </form>
                     <td>
                         <form action="{{ route('todo.destroy', $todo->id) }}" method="post">
                             @csrf
@@ -53,9 +45,10 @@
                             <button type="submit" class="delete_buttom">削除</button>
                         </form>
                     </td>
-                </tr>
+            </tr>
             @endforeach
         </table>
     </div>
 </body>
+
 </html>
