@@ -14,7 +14,6 @@ class TodoController extends Controller {
     */
 
     public function index() {
-        // $todos = Todo::all();
         return view('/todos.index');
     }
 
@@ -45,7 +44,7 @@ class TodoController extends Controller {
         $todo = new Todo;
         $todo->text = $request->input( 'todo_name' );
         $todo->save();
-        return redirect( ”todos” );
+        return redirect( ”/todos” );
     }
 
     /**

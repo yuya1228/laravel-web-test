@@ -6,6 +6,5 @@ use App\Http\Controllers\TodoController;
 
 Route::resource('todos',TodoController::class);
 
-// Route::get('/todos/create', function () {
-//     return redirect('/todos');
-// });
+Route::get('/todos', [TodoController::class]
+);

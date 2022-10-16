@@ -1,8 +1,16 @@
-@extends('todos.index')
+<!DOCTYPE html>
+<html lang="ja">
 
-@section('title','更新')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Laravel（入門）</title>
+    <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('/assets/css/reset.css') }}" rel="stylesheet">
+</head>
 
-@section('content')
+<body>
     <div class="todo_list">
         <h1>Todo List</h1>
         <form action="/todos" method="POST">
@@ -24,10 +32,7 @@
             </tr>
             <tr>
                 <td>{{ \Carbon\Carbon::now() }}</td>
-                <td>
-                    <form action="/todos" method="post">
-                        @csrf
-                        <input type="text" class="task_name"></form></td>
+                <td><input type="text" class="task_name"></td>
                 <td>
                     <form action="/todos/" method="post">
                         @csrf
@@ -45,4 +50,6 @@
             </tr>
         </table>
     </div>
-    @endsection
+</body>
+
+</html>

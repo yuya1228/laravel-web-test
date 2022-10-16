@@ -40,7 +40,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/todos/" method="post">
+                    <form action="/todos" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>
