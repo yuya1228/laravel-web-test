@@ -16,10 +16,8 @@
             @error('todo_name')
                 {{ $message }}
             @enderror
-            <div class="form-group">
                 <input type="text" name="todo_name" class="todo_text">
                 <button type="submit" class="create_button">追加</button>
-            </div>
         <table>
             <tr>
                 <th>作成日</th>
@@ -30,10 +28,10 @@
             <tr>
                 @foreach ($todos as $todo)
                     <td>{{ \Carbon\Carbon::now() }}</td>
-                    <form action="{{ route('todo.update', $todo->id) }}" method="POST">
+                    <form action="{{ route('todo.update',['id' => $todo->id]) }}" method="POST">
                         @csrf
                         @method('POST')
-                        <td><input type="text" value="{{ $todo->text }}" class="task_name">
+                        <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
                         </td>
