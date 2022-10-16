@@ -13,7 +13,7 @@
 <body>
     <div class="todo_list">
         <h1>Todo List</h1>
-        <form action="/todos" method="POST">
+        <form action="todo.create" method="POST">
             @csrf
             @error('todo_name')
                 {{ $message }}
@@ -41,7 +41,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="/todos/" method="post">
+                    <form action="/todos.delete" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>

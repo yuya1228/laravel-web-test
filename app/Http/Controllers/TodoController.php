@@ -92,7 +92,13 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function destroy( $id ) {
+    public function delete( Request $request,$id ) {
+        $todo = Todo::find($request->id);
+        return view('delete', ['form' => $todo]);
+    }
+
+    public function remove(Request $request){
         Todo::where('id', $id)->delete();
+        return redirect('/');
     }
 }

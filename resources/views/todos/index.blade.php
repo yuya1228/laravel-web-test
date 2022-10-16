@@ -13,11 +13,8 @@
 <body>
     <div class="todo_list">
         <h1>Todo List</h1>
-            @error('todo_name')
-                {{ $message }}
-            @enderror
-                <input type="text" name="todo_name" class="todo_text">
-                <button type="submit" class="create_button">追加</button>
+            <input type="text" name="todo_name" class="todo_text">
+            <button type="submit" class="create_button">追加</button>
         <table>
             <tr>
                 <th>作成日</th>
@@ -28,7 +25,7 @@
             <tr>
                 @foreach ($todos as $todo)
                     <td>{{ \Carbon\Carbon::now() }}</td>
-                    <form action="{{ route('todo.update',['id' => $todo->id]) }}" method="POST">
+                    <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf
                         @method('POST')
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
@@ -37,7 +34,7 @@
                         </td>
                     </form>
                     <td>
-                        <form action="{{ route('todo.destroy', $todo->id) }}" method="post">
+                        <form action="{{ route('todo.destroy', ['id' => $todo->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="delete_buttom">削除</button>
@@ -48,5 +45,4 @@
         </table>
     </div>
 </body>
-
 </html>
