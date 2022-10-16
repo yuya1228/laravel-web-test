@@ -14,8 +14,8 @@ class TodoController extends Controller {
     */
 
     public function index() {
-        $todos = Todo::all();
-        return view('todos.index', compact('todos'));
+        // $todos = Todo::all();
+        return view('/todos.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class TodoController extends Controller {
         $todo = new Todo;
         $todo->text = $request->input( 'todo_name' );
         $todo->save();
-        return redirect( ”/todos” );
+        return redirect( ”todos” );
     }
 
     /**
@@ -78,8 +78,11 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function update( Request $request, $id ) {
-        //
+    public function update( Request $request, Todo $todo) {
+        $todo->title = $request->title;
+        $todo->content = $request->content;
+        $todo->save();
+        return redirect("/todos/{$todo->id}");
     }
 
     /**

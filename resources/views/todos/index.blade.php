@@ -9,7 +9,6 @@
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('/assets/css/reset.css') }}" rel="stylesheet">
 </head>
-
 <body>
     <div class="todo_list">
         <h1>Todo List</h1>
@@ -51,5 +50,4 @@
         </table>
     </div>
 </body>
-
 </html>
