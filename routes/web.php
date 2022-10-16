@@ -5,6 +5,3 @@ use App\Http\Controllers\TodoController;
 
 
 Route::resource('todos',TodoController::class);
-
-Route::get('/todos', [TodoController::class]
-);
