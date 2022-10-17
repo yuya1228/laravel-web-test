@@ -17,6 +17,6 @@ Route::get('/create', function () {
     return redirect('/');
 });
 
-Route::get('/todos/{id}', function () {
+Route::get('/todo/{id}', function () {
     return redirect('/');
 });
