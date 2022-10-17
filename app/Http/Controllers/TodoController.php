@@ -6,6 +6,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\TodosRequest;
 
 class TodoController extends Controller {
     /**
@@ -15,8 +16,8 @@ class TodoController extends Controller {
     */
 
     public function index() {
-        $todos=Todo::all();
-        return view('todo.index' , compact('todos'));
+        $todos = Todo::all();
+        return view( 'todos.index', compact( 'todos' ) );
     }
 
     /**
@@ -25,9 +26,10 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function create() {
-        $todo->text;
-        return view('todo.create');
+    public function create( TodosRequest $request ) {
+        $form = $request->all('id');
+        Todo::create($form);
+        return redirect('/');
     }
 
     /**
@@ -38,14 +40,7 @@ class TodoController extends Controller {
     */
 
     public function store( Request $request ) {
-        $rules = [
-            'todo_name' => 'required|max:20',
-        ];
 
-        $todo = new Todo();
-        $todo->text = $request->input( 'todo_name' );
-        $todo->save();
-        return redirect->route( 'todo.create' );
     }
 
     /**
@@ -56,8 +51,8 @@ class TodoController extends Controller {
     */
 
     public function show( $id ) {
-        $todo = Todo::find($id);
-        return view('todo.show',compact('todos'));
+        $todo = Todo::find( $id );
+        return view( 'todos.show', compact( 'todos' ) );
     }
 
     /**
@@ -67,9 +62,9 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function edit( $id ) {
-        $todo = Todo::find($id);
-        return view('todo.edit',compact('todo'));
+    public function edit( Request $request ) {
+        $todo = Todo::find($request->$id );
+        return view( 'edit', ['form' => $todo] );
     }
 
     /**
@@ -80,10 +75,11 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function update( Request $request, Todo $todo) {
-        $todo->text = $request->text;
-        $todo->save();
-        return redirect("/todo/{$todo->id}");
+    public function update( Request $request, Todo $todo ) {
+        $form = $request->all('id','text');
+        unset($form['_token']);
+        Todo::where('id',$request->id)->update($form);
+        return redirect('/');
     }
 
     /**
@@ -93,13 +89,9 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function delete( Request $request,$id ) {
-        $id = Todo::find($request->id);
+    public function destroy( Request $request, $id ) {
+        $id = Todo::find( $request->id );
         $id->delete();
-    }
-
-    public function remove(Request $request){
-        Todo::where('id', $id)->delete();
-        return redirect('/');
+        return redirect( route( 'todo.index' ) );
     }
 }

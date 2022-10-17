@@ -8,10 +8,10 @@ Route::get('/', [TodoController::class, 'index'])->name('todo.index');
 
 Route::post('/create',[TodoController::class,'create'])->name('todo.create');
 
+Route::get('/update',[TodoController::class,'update']);
 Route::post('/update',[TodoController::class,'update'])->name('todo.update');
 
-Route::post('/delete',[TodoController::class,'destroy'])->name('todo.destroy');
-Route::post('/delete', [TodoController::class, 'remove'])->name('todo.destroy');
+Route::delete('/delete/{id}',[TodoController::class,'destroy'])->name('todo.destroy');
 
 Route::get('/create', function () {
     return redirect('/');
