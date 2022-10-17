@@ -13,8 +13,11 @@
 <body>
     <div class="todo_list">
         <h1>Todo List</h1>
+        <form action="{{ route('todo.create', ['id' => $todo->id]) }}" method="POST">
+            @csrf
             <input type="text" name="todo_name" class="todo_text">
             <button type="submit" class="create_button">追加</button>
+        </form>
         <table>
             <tr>
                 <th>作成日</th>
