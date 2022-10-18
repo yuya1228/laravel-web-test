@@ -18,7 +18,14 @@ class TodoController extends Controller {
     public function index() {
         $todos = Todo::all();
         return view( 'todos.index', compact( 'todos' ) );
+
+        return view('index', ['text' => 'フォームを入力']);
     }
+    public function post(ClientRequest $request)
+    {
+        return view('index', ['text' => '正しい入力です']);
+    }
+
 
     /**
     * Show the form for creating a new resource.
@@ -27,9 +34,9 @@ class TodoController extends Controller {
     */
 
     public function create( TodosRequest $request ) {
-        $form = $request->all('id');
-        Todo::create($form);
-        return redirect('/');
+        $form = $request->all();
+        Todo::create( $form );
+        return redirect( '/' );
     }
 
     /**
@@ -41,6 +48,9 @@ class TodoController extends Controller {
 
     public function store( Request $request ) {
 
+        $validated = $request->validate( [
+            'title' => [ 'required', 'max:20' ],
+        ] );
     }
 
     /**
@@ -63,8 +73,8 @@ class TodoController extends Controller {
     */
 
     public function edit( Request $request ) {
-        $todo = Todo::find($request->$id );
-        return view( 'edit', ['form' => $todo] );
+        $todo = Todo::find( $request->$id );
+        return view( 'edit', [ 'form' => $todo ] );
     }
 
     /**
@@ -76,10 +86,10 @@ class TodoController extends Controller {
     */
 
     public function update( Request $request, Todo $todo ) {
-        $form = $request->all('id','text');
-        unset($form['_token']);
-        Todo::where('id',$request->id)->update($form);
-        return redirect('/');
+        $form = $request->all();
+        unset( $form[ '_token' ] );
+        Todo::where( 'id', $request->id )->update( $form );
+        return redirect( '/' );
     }
 
     /**
@@ -93,5 +103,9 @@ class TodoController extends Controller {
         $id = Todo::find( $request->id );
         $id->delete();
         return redirect( route( 'todo.index' ) );
+    }
+
+    public function postValidates( TodosRequest $request ) {
+        return view( 'todos.index', [ 'msg'=>'OK' ] );
     }
 }

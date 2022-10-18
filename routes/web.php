@@ -7,6 +7,7 @@ use App\Http\Controllers\TodoController;
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
 
 Route::post('/create',[TodoController::class,'create'])->name('todo.create');
+Route::post('/todos', [TodoController::class, 'store']);
 
 Route::get('/update',[TodoController::class,'update']);
 Route::post('/update',[TodoController::class,'update'])->name('todo.update');

@@ -4,28 +4,34 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TodosRequest extends FormRequest
-{
+class TodosRequest extends FormRequest {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
+    * Determine if the user is authorized to make this request.
+    *
+    * @return bool
+    */
+
+    public function authorize() {
+
             return true;
+        
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
-    public function rules()
-    {
+    * Get the validation rules that apply to the request.
+    *
+    * @return array<string, mixed>
+    */
+
+    public function rules() {
         return [
-            'id' => 'required',
-            'text' => 'string|max:20',
+            'text' => [ 'required', 'max:20' ]
+        ];
+    }
+
+    public function messages() {
+        return [
+            'text.required' => '入力必須',
         ];
     }
 }
