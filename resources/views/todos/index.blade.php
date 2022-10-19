@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 @foreach ($todos as $todo)
-                    <td>{{ \Carbon\Carbon::now() }}</td>
+                    <td>{{$todo -> created_at}}</td>
                     <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
