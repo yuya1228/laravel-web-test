@@ -28,9 +28,8 @@
                 </form>
             </ul>
         </div>
-        <a href="{{route('todo.search')}}">
-        <button class="task_serch">タスク検索</button>
-        </a>
+        <a href="{{url('/search')}}">
+            <button type="submit" class="task_serch">タスク検索</button></a>
         @error('text')
             <tr>
                 <td>{{ $message }}</td>

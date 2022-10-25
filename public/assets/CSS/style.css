@@ -151,3 +151,21 @@ table {
     display: inline-block;
     color: white;
 }
+
+.return_button {
+    font-size: 13px;
+    width: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    border-color: gray;
+    background-color: white;
+    color: gray;
+    margin-left: 3%;
+    margin-bottom: 3%;
+}
+
+.return_button:hover{
+    background: gray;
+    color: white;
+}

@@ -15,8 +15,17 @@
         <div class="todo_login">
             <h1>タスク検索</h1>
             <ul>
-                <li>テストユーザーでログイン中</li>
-                <li><button>ログアウト</button></li>
+                @if (Auth::check())
+                    <p>ユーザネームでログイン中</p>
+                @else
+                    <p>ログインしてください。（<a href="/login">ログイン</a>｜
+                        <a href="/register">登録</a>）
+                    </p>
+                @endif
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <li><button>ログアウト</button></li>
+                </form>
             </ul>
         </div>
         @error('text')
@@ -45,33 +54,29 @@
                 <th>削除</th>
             </tr>
             <tr>
-                @foreach ($todos as $todo)
-                    <td>{{ $todo->created_at }}</td>
-                    <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
+                <td>日時</td>
+                <td><input type="text" name="text" class="task_name">
+                </td>
+                <td><select name="todo_text" class="life_list">
+                        <option value="タグ1">家事</option>
+                        <option value="タグ2">勉強</option>
+                        <option value="タグ3">運動</option>
+                        <option value="タグ4">食事</option>
+                        <option value="タグ5">移動</option>
+                    </select>
+                </td>
+                <td><button type="submit" class="update_buttom">更新</button>
+                </td>
+                <td>
+                    <form action="todo.destroy" method="post">
                         @csrf
-                        <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
-                        </td>
-                        <td><select name="todo_text" class="life_list">
-                                <option value="タグ1">家事</option>
-                                <option value="タグ2">勉強</option>
-                                <option value="タグ3">運動</option>
-                                <option value="タグ4">食事</option>
-                                <option value="タグ5">移動</option>
-                            </select>
-                        </td>
-                        <td><button type="submit" class="update_buttom">更新</button>
-                        </td>
+                        @method('DELETE')
+                        <button type="submit" class="delete_buttom">削除</button>
                     </form>
-                    <td>
-                        <form action="{{ route('todo.destroy', $todo) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="delete_buttom">削除</button>
-                        </form>
-                    </td>
+                </td>
             </tr>
-            @endforeach
         </table>
+        <a href="{{url('/home')}}"><button class="return_button">戻る</button></a>
     </div>
 </body>
 
