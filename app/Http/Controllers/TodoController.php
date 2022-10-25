@@ -37,7 +37,7 @@ class TodoController extends Controller {
 
     public function create( TodosRequest $request ) {
         $form = $request->all();
-        $user = Auth::user();
+        $form['user_id'] = $user_id;
         Todo::create($form);
         return redirect( '/' );
     }
@@ -50,7 +50,6 @@ class TodoController extends Controller {
     */
 
     public function store( Request $request ) {
-
         $validated = $request->validate( [
             'title' => [ 'required', 'max:20' ],
         ] );
