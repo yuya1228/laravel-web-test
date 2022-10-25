@@ -12,30 +12,52 @@
 
 <body>
     <div class="todo_list">
-        <h1>Todo List</h1>
+        <div class="todo_login">
+            <h1>タスク検索</h1>
+            <ul>
+                <li>テストユーザーでログイン中</li>
+                <li><button>ログアウト</button></li>
+            </ul>
+        </div>
         @error('text')
-                <tr>
-                    <td>{{ $message }}</td>
-                </tr>
-            @enderror
+            <tr>
+                <td>{{ $message }}</td>
+            </tr>
+        @enderror
         <form action="/create" method="post">
             @csrf
             <input type="text" name="text" class="todo_text">
-            <button type="submit" class="create_button">追加</button>
+            <select name="todo_tag" class="life_tag">
+                <option value="タグ1">家事</option>
+                <option value="タグ2">勉強</option>
+                <option value="タグ3">運動</option>
+                <option value="タグ4">食事</option>
+                <option value="タグ5">移動</option>
+            </select>
+            <button type="submit" class="create_button">検索</button>
         </form>
         <table>
             <tr>
                 <th>作成日</th>
                 <th>タスク名</th>
+                <th>タグ</th>
                 <th>更新</th>
                 <th>削除</th>
             </tr>
             <tr>
                 @foreach ($todos as $todo)
-                    <td>{{$todo -> created_at}}</td>
+                    <td>{{ $todo->created_at }}</td>
                     <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
+                        </td>
+                        <td><select name="todo_text" class="life_list">
+                                <option value="タグ1">家事</option>
+                                <option value="タグ2">勉強</option>
+                                <option value="タグ3">運動</option>
+                                <option value="タグ4">食事</option>
+                                <option value="タグ5">移動</option>
+                            </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
                         </td>

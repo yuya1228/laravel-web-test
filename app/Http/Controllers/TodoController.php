@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use App\Models\User;
+use App\Models\Tag;
 use App\Http\Requests\TodosRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller {
     /**
@@ -15,10 +18,10 @@ class TodoController extends Controller {
     */
 
     public function index() {
-        $todos = Todo::all();
-        return view( 'todos.index', compact( 'todos' ) );
-
-        return view('index', ['text' => 'フォームを入力']);
+        $user = Auth::user();
+        $todos = Todo::paginate(1);
+        $param = ['todos' => $todos, 'user' =>$user];
+        return view('index', $param);
     }
     public function post(ClientRequest $request)
     {
@@ -82,5 +85,15 @@ class TodoController extends Controller {
 
     public function postValidates( TodosRequest $request ) {
         return view( 'todos.index', [ 'msg'=>'OK' ] );
+    }
+
+    public function search(Request $request){
+        return view('/search');
+    }
+
+    public function find(Request $request){
+        $form = $request->all();
+        User::search($form);
+        return redirect('/task/create');
     }
 }
