@@ -19,8 +19,8 @@ class TodoController extends Controller {
 
     public function index() {
         $user = Auth::user();
-        $todos = Todo::paginate(1);
-        $param = ['todos' => $todos, 'user' =>$user];
+        $todos = Todo::paginate();
+        $param = ['todo' => $todos, 'user' =>$user];
         return view('todo.index', $param);
     }
     public function post(ClientRequest $request)
@@ -37,9 +37,10 @@ class TodoController extends Controller {
 
     public function create( TodosRequest $request ) {
         $form = $request->all();
+        $user_id = Auth::user();
         $form['user_id'] = $user_id;
         Todo::create($form);
-        return redirect( '/' );
+        return redirect( '/home' );
     }
 
     /**
@@ -80,11 +81,11 @@ class TodoController extends Controller {
     public function destroy( Request $request, $id ) {
         $id = Todo::find( $request->id );
         $id->delete();
-        return redirect( route( 'todo.index' ) );
+        return redirect( '/home' );
     }
 
     public function postValidates( TodosRequest $request ) {
-        return view( 'todos.index', [ 'msg'=>'OK' ] );
+        return view( 'todo.index', [ 'msg'=>'OK' ] );
     }
 
     public function search(Request $request){

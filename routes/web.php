@@ -12,7 +12,6 @@ Route::get('/search',[TodoController::class,'search'])->name('todo.search');
 Route::get('/search/create',[TodoController::class,'find'])->name('todo.serch.create');
 Route::get('/home', [TodoController::class, 'index'])->middleware('auth');
 
-
 Route::get('/', function () {
     return view('welcome');
 });

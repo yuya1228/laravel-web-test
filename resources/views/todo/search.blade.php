@@ -16,7 +16,7 @@
             <h1>タスク検索</h1>
             <ul>
                 @if (Auth::check())
-                    <p>ユーザネームでログイン中</p>
+                    <p> ユーザーでログイン中</p>
                 @else
                     <p>ログインしてください。（<a href="/login">ログイン</a>｜
                         <a href="/register">登録</a>）
