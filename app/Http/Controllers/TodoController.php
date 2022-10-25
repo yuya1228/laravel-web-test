@@ -37,7 +37,8 @@ class TodoController extends Controller {
 
     public function create( TodosRequest $request ) {
         $form = $request->all();
-        Todo::create( $form );
+        $user = Auth::user();
+        Todo::create($form);
         return redirect( '/' );
     }
 
