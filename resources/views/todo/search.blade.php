@@ -33,7 +33,7 @@
                 <td>{{ $message }}</td>
             </tr>
         @enderror
-        <form action="/create" method="post">
+        <form action="/" method="post">
             @csrf
             <input type="text" name="text" class="todo_text">
             <select name="todo_tag" class="life_tag">

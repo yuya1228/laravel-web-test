@@ -20,14 +20,13 @@ class TodoController extends Controller {
     public function index() {
         $user = Auth::user();
         $todos = Todo::paginate();
-        $param = ['todos' => $todos, 'user' =>$user];
-        return view('todo.index', $param);
-    }
-    public function post(ClientRequest $request)
-    {
-        return view('index', ['text' => '正しい入力です']);
+        $param = [ 'todos' => $todos, 'user' =>$user ];
+        return view( 'todo.index', $param );
     }
 
+    public function post( ClientRequest $request ) {
+        return view( 'index', [ 'text' => '正しい入力です' ] );
+    }
 
     /**
     * Show the form for creating a new resource.
@@ -38,8 +37,8 @@ class TodoController extends Controller {
     public function create( TodosRequest $request ) {
         $form = $request->all();
         $user_id = Auth::user();
-        $form['user_id'] = $user_id;
-        Todo::create($form);
+        $form[ 'user_id' ] = $user_id;
+        Todo::create( $form );
         return redirect( '/home' );
     }
 
@@ -63,7 +62,6 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-
     public function update( Request $request, Todo $todo ) {
         $form = $request->all();
         unset( $form[ '_token' ] );
@@ -81,20 +79,23 @@ class TodoController extends Controller {
     public function destroy( Request $request, $id ) {
         $id = Todo::find( $request->id );
         $id->delete();
-        return redirect('/home');
+        return redirect( '/home' );
     }
 
     public function postValidates( TodosRequest $request ) {
         return view( 'todo.index', [ 'msg'=>'OK' ] );
     }
 
-    public function search(Request $request){
-        return view('todo.search');
+    public function find( Request $request ) {
+        return view( 'find', [ 'input'=>'' ] );
     }
 
-    public function find(Request $request){
-        $form = $request->all();
-        User::search($form);
-        return redirect('/task/create');
+    public function search( Request $request ) {
+        $todo = Todo::where('text',"%{$request->input}%")->first();
+        $param = [
+            'input' => $request->input,
+            'todo' => $todo
+        ];
+        return view('todo.search', $param);
     }
 }
