@@ -20,7 +20,7 @@ class TodoController extends Controller {
     public function index() {
         $user = Auth::user();
         $todos = Todo::paginate();
-        $param = ['todo' => $todos, 'user' =>$user];
+        $param = ['todos' => $todos, 'user' =>$user];
         return view('todo.index', $param);
     }
     public function post(ClientRequest $request)
@@ -81,7 +81,7 @@ class TodoController extends Controller {
     public function destroy( Request $request, $id ) {
         $id = Todo::find( $request->id );
         $id->delete();
-        return redirect( '/home' );
+        return redirect('/home');
     }
 
     public function postValidates( TodosRequest $request ) {

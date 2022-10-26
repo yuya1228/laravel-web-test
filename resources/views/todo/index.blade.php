@@ -28,7 +28,7 @@
                 </form>
             </ul>
         </div>
-        <a href="{{url('/search')}}">
+        <a href="{{ url('/search') }}">
             <button type="submit" class="task_serch">タスク検索</button></a>
         @error('text')
             <tr>
@@ -37,13 +37,14 @@
         @enderror
         <form action="/create" method="post">
             @csrf
+
             <input type="text" name="text" class="todo_text">
             <select name="tag_id" class="life_tag">
-                <option value="タグ1">家事</option>
-                <option value="タグ2">勉強</option>
-                <option value="タグ3">運動</option>
-                <option value="タグ4">食事</option>
-                <option value="タグ5">移動</option>
+                <option value="家事">家事</option>
+                <option value="勉強">勉強</option>
+                <option value="運動">運動</option>
+                <option value="食事">食事</option>
+                <option value="移動">移動</option>
             </select>
             <button type="submit" class="create_button">追加</button>
         </form>
@@ -63,11 +64,9 @@
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><select name="tag_id" class="life_list">
-                                <option value="タグ1">家事</option>
-                                <option value="タグ2">勉強</option>
-                                <option value="タグ3">運動</option>
-                                <option value="タグ4">食事</option>
-                                <option value="タグ5">移動</option>
+                            @foreach(Config::get('tag_list.tag_id') as $key => $tag_id)
+                                <option value="{{ $todo->tag_id }}">{{ $todo->tag_id}}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
