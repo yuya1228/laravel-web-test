@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Tag;
 use App\Http\Requests\TodosRequest;
 use Illuminate\Support\Facades\Auth;
+use Config\tag_list;
 
 class TodoController extends Controller {
     /**
@@ -21,6 +22,7 @@ class TodoController extends Controller {
         $user = Auth::user();
         $todos = Todo::paginate();
         $param = [ 'todos' => $todos, 'user' =>$user ];
+        $tag_id = Tag::all();
         return view( 'todo.index', $param );
     }
 
@@ -91,11 +93,9 @@ class TodoController extends Controller {
     }
 
     public function search( Request $request ) {
-        $todo = Todo::where('text',"%{$request->input}%")->first();
-        $param = [
-            'input' => $request->input,
-            'todo' => $todo
-        ];
-        return view('todo.search', $param);
+        $user = Auth::user();
+        $todos = Todo::paginate();
+        $param = [ 'todos' => $todos, 'user' =>$user ];
+        return view( 'todo.index', $param );
     }
 }

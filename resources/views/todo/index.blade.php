@@ -65,7 +65,8 @@
                         </td>
                         <td><select name="tag_id" class="life_list">
                             @foreach(Config::get('tag_list.tag_id') as $key => $tag_id)
-                                <option value="{{ $todo->tag_id }}">{{ $todo->tag_id}}</option>
+                                <option value="{{ $todo->tag_id }}"@if($todo->id==$tag_id) selected @endif>
+                                    {{$todo->tag_id}}</option>
                                 @endforeach
                             </select>
                         </td>
