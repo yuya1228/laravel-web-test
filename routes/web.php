@@ -11,7 +11,6 @@ Route::delete('/delete/{id}',[TodoController::class,'destroy'])->name('todo.dest
 Route::get('/search',[TodoController::class,'search'])->name('todo.search');
 Route::get('/find',[TodoController::class,'find'])->name('todo.find');
 Route::get('/home', [TodoController::class, 'index'])->middleware('auth');
-
 Route::get('/', function () {
     return view('welcome');
 });

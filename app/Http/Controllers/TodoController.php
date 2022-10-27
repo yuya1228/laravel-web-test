@@ -96,6 +96,6 @@ class TodoController extends Controller {
         $user = Auth::user();
         $todos = Todo::paginate();
         $param = [ 'todos' => $todos, 'user' =>$user ];
-        return view( 'todo.index', $param );
+        return view('todo.search',$param);
     }
 }
