@@ -33,7 +33,7 @@
                 <td>{{ $message }}</td>
             </tr>
         @enderror
-        <form action="todo.search" method="get">
+        <form action="todo.find" method="get">
             @csrf
             <input type="text" name="text" class="todo_text">
             <select name="todo_tag" class="life_tag">
