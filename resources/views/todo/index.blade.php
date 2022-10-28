@@ -68,7 +68,6 @@
                                         value="{{ $todo->tag_id }}"@if ($todo->tag_id == $tag_id) selected @endif>
                                         {{ $todo->tag_id }}
                                 @endforeach
-                                </option>
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>

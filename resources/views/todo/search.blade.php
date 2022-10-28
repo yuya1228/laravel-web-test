@@ -33,7 +33,7 @@
                 <td>{{ $message }}</td>
             </tr>
         @enderror
-        <form action="/search" method="get">
+        <form action="todo.search" method="get">
             @csrf
             <input type="text" name="text" class="todo_text">
             <select name="todo_tag" class="life_tag">
@@ -72,7 +72,7 @@
                 </td>
                 </form>
                 <td>
-                    <form action="{{ route('todo.destroy', $user) }}" method="post">
+                    <form action="{{ route('todo.destroy',$tag_id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>
