@@ -53,6 +53,7 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
+            @foreach($todos as $tag_id)
             <tr>
                 <td>{{$user->created_at}}</td>
                 <td><input type="text" name="text" class="task_name">
@@ -65,16 +66,20 @@
                         <option value="タグ5">移動</option>
                     </select>
                 </td>
+                <form action="{{ route('todo.update', ['id' => $user->id]) }}" method="post">
+                    @csrf
                 <td><button type="submit" class="update_buttom">更新</button>
                 </td>
+                </form>
                 <td>
-                    <form action="todo.destroy" method="post">
+                    <form action="{{ route('todo.destroy', $user) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>
                     </form>
                 </td>
             </tr>
+            @endforeach
         </table>
         <a href="{{url('/home')}}"><button class="return_button">戻る</button></a>
     </div>

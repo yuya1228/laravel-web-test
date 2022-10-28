@@ -37,7 +37,6 @@
         @enderror
         <form action="/create" method="post">
             @csrf
-
             <input type="text" name="text" class="todo_text">
             <select name="tag_id" class="life_tag">
                 <option value="家事">家事</option>
@@ -64,10 +63,12 @@
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><select name="tag_id" class="life_list">
-                            @foreach(Config::get('tag_list.tag_id') as $key => $tag_id)
-                                <option value="{{ $todo->tag_id }}"@if($todo->id==$tag_id) selected @endif>
-                                    {{$todo->tag_id}}</option>
+                                @foreach (Config::get('tag_list.tag_id') as $key => $tag_id)
+                                    <option
+                                        value="{{ $todo->tag_id }}"@if ($todo->tag_id == $tag_id) selected @endif>
+                                        {{ $todo->tag_id }}
                                 @endforeach
+                                </option>
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>

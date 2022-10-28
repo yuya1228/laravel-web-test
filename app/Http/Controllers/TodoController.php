@@ -21,8 +21,8 @@ class TodoController extends Controller {
     public function index() {
         $user = Auth::user();
         $todos = Todo::paginate();
-        $param = [ 'todos' => $todos, 'user' =>$user ];
         $tag_id = Tag::all();
+        $param = [ 'todos' => $todos, 'user' =>$user, 'tag'=>$tag_id];
         return view( 'todo.index', $param );
     }
 
@@ -95,6 +95,7 @@ class TodoController extends Controller {
     public function search( Request $request ) {
         $user = Auth::user();
         $todos = Todo::paginate();
+        $tag_id= Tag::all();
         $param = [ 'todos' => $todos, 'user' =>$user ];
         return view('todo.search',$param);
     }
