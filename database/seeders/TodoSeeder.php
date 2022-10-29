@@ -14,6 +14,8 @@ class TodoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $tags=[
+            'tag_id'=>'家事','勉強','運動','食事','移動'
+        ];
     }
 }
