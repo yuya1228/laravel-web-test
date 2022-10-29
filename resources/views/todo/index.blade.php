@@ -63,11 +63,17 @@
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><select name="tag_id" class="life_list">
-                                @foreach (Config::get('tag_list.tag_id') as $key => $tag_id)
-                                    <option
-                                        value="{{ $todo->tag_id }}"@if ($todo->tag_id == $tag_id) selected @endif>
-                                        {{ $todo->tag_id }}
-                                @endforeach
+                                (Config::get('tag_list.tag_id') as $key => $tag_id)
+                                    <option value="1" @if($todo->tag_id === 1 ) selected @endif>家事</option>
+                                    <option value="2" @if($todo->tag_id === 2 ) selected @endif>勉強</option>
+
+                                    <option value="3" @if($todo->tag_id === 3 ) selected @endif>運動</option>
+
+                                    <option value="4" @if($todo->tag_id === 4 ) selected @endif>食事</option>
+
+                                    <option value="5" @if($todo->tag_id === 5 ) selected @endif>移動</option>
+
+
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>

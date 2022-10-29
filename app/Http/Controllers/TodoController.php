@@ -89,7 +89,7 @@ class TodoController extends Controller {
     }
 
     public function find( Request $request ) {
-        return view( 'todo.search', [ 'input'=>'' ] );
+        return view( 'find', [ 'input'=>'' ] );
     }
 
     public function search( Request $request ) {
@@ -100,6 +100,7 @@ class TodoController extends Controller {
         $param = [
             'todos' => $todos,
             'user' =>$user,
+            'tag_id'=>$tag_id,
             'input' => $request->input,
             'todo'=>$todo
         ];

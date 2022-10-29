@@ -72,7 +72,7 @@
                 </td>
                 </form>
                 <td>
-                    <form action="{{ route('todo.destroy',$tag_id) }}" method="post">
+                    <form action="{{ route('todo.delete',$tag_id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>
