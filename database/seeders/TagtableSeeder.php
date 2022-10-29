@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TodoSeeder extends Seeder
+class TagtableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class TodoSeeder extends Seeder
      */
     public function run()
     {
-        $tags=[
-            'id'=>'家事','勉強','運動','食事','移動'
+        $tag_id=[
+            'name'=>'家事','勉強','運動','食事','移動'
         ];
     }
 }

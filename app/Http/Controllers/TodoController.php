@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Http\Requests\TodosRequest;
 use Illuminate\Support\Facades\Auth;
 use Config\tag_list;
+use Database\seeders\TodoTablesSeeder;
 
 class TodoController extends Controller {
     /**
@@ -21,8 +22,8 @@ class TodoController extends Controller {
     public function index() {
         $user = Auth::user();
         $todos = Todo::paginate();
-        $tag_id = Tag::all();
-        $param = [ 'todos' => $todos, 'user' =>$user, 'tag'=>$tag_id];
+        $tags = Tag::all();
+        $param = [ 'todos' => $todos, 'user' =>$user, 'tag'=>$tags];
         return view( 'todo.index', $param );
     }
 
@@ -39,6 +40,7 @@ class TodoController extends Controller {
     public function create( TodosRequest $request ) {
         $form = $request->all();
         $user_id = Auth::user();
+        $tags = Tag::all();
         $form[ 'user_id' ] = $user_id;
         Todo::create( $form );
         return redirect( '/home' );
@@ -89,20 +91,18 @@ class TodoController extends Controller {
     }
 
     public function find( Request $request ) {
-        return view( 'find', [ 'input'=>'' ] );
+        $todo = Todo::where('text',$request->text)->get();
+        return redirect('/search',['todo'=>$todo]);
     }
 
     public function search( Request $request ) {
         $user = Auth::user();
         $todos = Todo::paginate();
         $tag_id= Tag::all();
-        $todo = Todo::where('text','tag_id',"%{$request->input}%")->get();
         $param = [
             'todos' => $todos,
             'user' =>$user,
             'tag_id'=>$tag_id,
-            'input' => $request->input,
-            'todo'=>$todo
         ];
         return view('todo.search',$param);
     }
