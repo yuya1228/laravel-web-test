@@ -72,7 +72,6 @@
                                     <option value="4" @if($todo->tag_id === 4 ) selected @endif>食事</option>
 
                                     <option value="5" @if($todo->tag_id === 5 ) selected @endif>移動</option>
-
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
