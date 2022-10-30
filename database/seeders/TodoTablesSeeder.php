@@ -17,5 +17,9 @@ class TodoTablesSeeder extends Seeder
         $tags=[
             'name'=>'家事','勉強','運動','食事','移動'
         ];
+        @foreach($tags as $tag)
+        echo $tag->name;
+        @endforeach
+        Tag::create($tags);
     }
 }
