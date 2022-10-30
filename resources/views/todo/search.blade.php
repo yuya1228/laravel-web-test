@@ -53,10 +53,10 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
-            <form action="{{ route('todo.find', ['id' => $user->id]) }}" method="get">
-                    @csrf
             @foreach($todos as $tag_id)
             <tr>
+                <form action="{{ route('todo.search', ['id' => $user->id]) }}" method="get">
+                    @csrf
                 <td>{{$user->created_at}}</td>
                 <td><input type="text" name="text" class="task_name">
                 </td>

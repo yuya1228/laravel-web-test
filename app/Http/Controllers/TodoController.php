@@ -10,7 +10,7 @@ use App\Models\Tag;
 use App\Http\Requests\TodosRequest;
 use Illuminate\Support\Facades\Auth;
 use Config\tag_list;
-use Database\seeders\DatabaseSeeder;
+use Database\seeders\TodoTablesSeeder;
 
 class TodoController extends Controller {
     /**
