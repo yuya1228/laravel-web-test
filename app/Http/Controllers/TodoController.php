@@ -10,7 +10,7 @@ use App\Models\Tag;
 use App\Http\Requests\TodosRequest;
 use Illuminate\Support\Facades\Auth;
 use Config\tag_list;
-use Database\seeders\TodoTablesSeeder;
+use Database\seeders\DatabaseSeeder;
 
 class TodoController extends Controller {
     /**
@@ -92,7 +92,7 @@ class TodoController extends Controller {
 
     public function find( Request $request ) {
         $todo = Todo::where('text',$request->text)->get();
-        return redirect('/search',['todo'=>$todo]);
+        return redirect('/search');
     }
 
     public function search( Request $request ) {

@@ -33,9 +33,9 @@
                 <td>{{ $message }}</td>
             </tr>
         @enderror
-        <form action="todo.find" method="get">
+        <form action="{{route('todo.find')}}" method="get">
             @csrf
-            <input type="text" name="text" class="todo_text">
+            <input type="search" name="search" class="todo_text">
             <select name="todo_tag" class="life_tag">
                 <option value="タグ1">家事</option>
                 <option value="タグ2">勉強</option>
@@ -53,6 +53,8 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
+            <form action="{{ route('todo.find', ['id' => $user->id]) }}" method="get">
+                    @csrf
             @foreach($todos as $tag_id)
             <tr>
                 <td>{{$user->created_at}}</td>
@@ -66,8 +68,6 @@
                         <option value="タグ5">移動</option>
                     </select>
                 </td>
-                <form action="{{ route('todo.update', ['id' => $user->id]) }}" method="post">
-                    @csrf
                 <td><button type="submit" class="update_buttom">更新</button>
                 </td>
                 </form>
