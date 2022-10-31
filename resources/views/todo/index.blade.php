@@ -18,7 +18,7 @@
                 @if (Auth::check())
                     <p>「 {{ $user->name . '' }}」でログイン中</p>
                 @else
-                    <p>ログインしてください。（<a href="/login">ログイン</a>｜
+                    <p>ログインしてください。（<a href="/login">ログイン</a>
                         <a href="/register">登録</a>）
                     </p>
                 @endif
@@ -63,15 +63,22 @@
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><select name="tag_id" class="life_list">
-                                (Config::get('tag_list.tag_id') as $key => $tag_id)
-                                <option value="1" @if ($todo->tag_id === 1) selected @endif>家事</option>
-                                <option value="2" @if ($todo->tag_id === 2) selected @endif>勉強</option>
-
-                                <option value="3" @if ($todo->tag_id === 3) selected @endif>運動</option>
-
-                                <option value="4" @if ($todo->tag_id === 4) selected @endif>食事</option>
-
-                                <option value="5" @if ($todo->tag_id === 5) selected @endif>移動</option>
+                            @foreach($todos as $todo)
+                            (Config::get('tag_list.tag_id') as $key => $tag_id)
+                                @if ($todo->tag_id === 1)
+                                    <option value="{{$tag_id}}" selected="selected"></option>
+                                @elseif($todo->tag_id === 2)
+                                    <option value="{{tag_id}}" selected="selected">{{$todo->tag_id}}</option>
+                                    @elseif($todo->tag_id === 3)
+                                    <option value="3" selected="selected">{{$todo->tag_id}}</option>
+                                    @elseif($todo->tag_id === 4)
+                                    <option value="4" selected="selected">{{$todo->tag_id}}</option>
+                                    @elseif($todo->tag_id === 5)
+                                    <option value="5" selected="selected">{{$todo->tag_id}}</option>
+                                    @else
+                                    <option value="{{$todo->tag_id}}">{{$todo->tag_id}}</option>
+                                @endif
+                            @endforeach
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>

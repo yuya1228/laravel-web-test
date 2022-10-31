@@ -55,7 +55,7 @@
             </tr>
             @foreach($todos as $tag_id)
             <tr>
-                <form action="{{ route('todo.search', ['id' => $user->id]) }}" method="get">
+                <form action="{{$todo}}" method="get">
                     @csrf
                 <td>{{$user->created_at}}</td>
                 <td><input type="text" name="text" class="task_name">

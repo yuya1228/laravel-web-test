@@ -68,6 +68,7 @@ class TodoController extends Controller {
 
     public function update( Request $request, Todo $todo ) {
         $form = $request->all();
+        $tags = Tag::all();
         unset( $form[ '_token' ] );
         Todo::where( 'id', $request->id )->update( $form );
         return redirect( '/home' );
@@ -92,7 +93,7 @@ class TodoController extends Controller {
 
     public function find( Request $request ) {
         $todo = Todo::where('text',$request->text)->get();
-        return redirect('/search');
+        return redirect('/search',['todo'=>$todo]);
     }
 
     public function search( Request $request ) {
