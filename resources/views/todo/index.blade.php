@@ -39,11 +39,11 @@
             @csrf
             <input type="text" name="text" class="todo_text">
             <select name="tag_id" class="life_tag">
-                <option value="家事">家事</option>
-                <option value="勉強">勉強</option>
-                <option value="運動">運動</option>
-                <option value="食事">食事</option>
-                <option value="移動">移動</option>
+                <option value="1">家事</option>
+                <option value="2">勉強</option>
+                <option value="3">運動</option>
+                <option value="4">食事</option>
+                <option value="5">移動</option>
             </select>
             <button type="submit" class="create_button">追加</button>
         </form>
@@ -64,14 +64,14 @@
                         </td>
                         <td><select name="tag_id" class="life_list">
                                 (Config::get('tag_list.tag_id') as $key => $tag_id)
-                                    <option value="1" @if($todo->tag_id === 1 ) selected @endif>家事</option>
-                                    <option value="2" @if($todo->tag_id === 2 ) selected @endif>勉強</option>
+                                <option value="1" @if ($todo->tag_id === 1) selected @endif>家事</option>
+                                <option value="2" @if ($todo->tag_id === 2) selected @endif>勉強</option>
 
-                                    <option value="3" @if($todo->tag_id === 3 ) selected @endif>運動</option>
+                                <option value="3" @if ($todo->tag_id === 3) selected @endif>運動</option>
 
-                                    <option value="4" @if($todo->tag_id === 4 ) selected @endif>食事</option>
+                                <option value="4" @if ($todo->tag_id === 4) selected @endif>食事</option>
 
-                                    <option value="5" @if($todo->tag_id === 5 ) selected @endif>移動</option>
+                                <option value="5" @if ($todo->tag_id === 5) selected @endif>移動</option>
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
