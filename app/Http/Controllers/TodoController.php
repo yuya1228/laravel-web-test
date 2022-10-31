@@ -93,7 +93,7 @@ class TodoController extends Controller {
 
     public function find( Request $request ) {
         $todo = Todo::where('text',$request->text)->get();
-        return redirect('/search',['todo'=>$todo]);
+        return redirect('/search');
     }
 
     public function search( Request $request ) {
