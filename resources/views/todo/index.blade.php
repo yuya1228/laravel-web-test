@@ -57,28 +57,17 @@
             </tr>
             <tr>
                 @foreach ($todos as $todo)
-                    <td>{{ $todo->created_at }}</td>
-                    <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
+                <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf
+                    <td>{{ $todo->created_at }}</td>
                         <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
                         </td>
                         <td><select name="tag_id" class="life_list">
-                            @foreach($todos as $todo)
-                            (Config::get('tag_list.tag_id') as $key => $tag_id)
-                                @if ($todo->tag_id === 1)
-                                    <option value="{{$tag_id}}" selected="selected"></option>
-                                @elseif($todo->tag_id === 2)
-                                    <option value="{{tag_id}}" selected="selected">{{$todo->tag_id}}</option>
-                                    @elseif($todo->tag_id === 3)
-                                    <option value="3" selected="selected">{{$todo->tag_id}}</option>
-                                    @elseif($todo->tag_id === 4)
-                                    <option value="4" selected="selected">{{$todo->tag_id}}</option>
-                                    @elseif($todo->tag_id === 5)
-                                    <option value="5" selected="selected">{{$todo->tag_id}}</option>
-                                    @else
-                                    <option value="{{$todo->tag_id}}">{{$todo->tag_id}}</option>
-                                @endif
-                            @endforeach
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $todo->tag_id }}"
+                                        @if ($todo->tag_id == $tag->id) selected @endif>
+                                        {{ $tag->name }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td><button type="submit" class="update_buttom">更新</button>
