@@ -53,26 +53,26 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
-            @foreach($todos as $tag_id)
             <tr>
-                <form action="{{ route('todo.find', ['id' => $user->id]) }}" method="get">
-                    @csrf
-                <td>{{$user->created_at}}</td>
-                <td><input type="text" name="text" class="task_name">
-                </td>
-                <td><select name="todo_text" class="life_list">
-                        <option value="タグ1">家事</option>
-                        <option value="タグ2">勉強</option>
-                        <option value="タグ3">運動</option>
-                        <option value="タグ4">食事</option>
-                        <option value="タグ5">移動</option>
-                    </select>
-                </td>
-                <td><button type="submit" class="update_buttom">更新</button>
-                </td>
-                </form>
+            @foreach ($todos as $todo)
+                <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
+                        @csrf
+                    <td>{{ $todo->created_at }}</td>
+                        <td><input type="text" value="{{ $todo->text }}" name="text" class="task_name">
+                        </td>
+                        <td><select name="tag_id" class="life_list">
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}"
+                                        @if ($todo->tag_id == $tag->id) selected @endif>
+                                        {{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td><button type="submit" class="update_buttom">更新</button>
+                        </td>
+                    </form>
                 <td>
-                    <form action="{{ route('todo.delete',$tag_id) }}" method="post">
+                    <form action="{{ route('todo.delete',$todo ) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete_buttom">削除</button>

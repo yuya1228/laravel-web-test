@@ -104,11 +104,15 @@ class TodoController extends Controller {
             'user' =>$user,
             'tag'=>$tags,
         ];
-        return view('todo.search',$param);
+        return view('todo.search',$param,compact('tags',));
     }
     public function delete( Request $request, $tag_id ) {
         $id = Todo::find( $request->id );
         $id->delete();
-        return redirect( '/search' );
+        return redirect( '/search');
+    }
+    public function update_search(Request $request){
+        $tags = Tag::all();
+        return view('todo.search',compact('tags'));
     }
 }

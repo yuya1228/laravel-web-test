@@ -64,7 +64,7 @@
                         </td>
                         <td><select name="tag_id" class="life_list">
                                 @foreach ($tags as $tag)
-                                    <option value="{{ $todo->tag_id }}"
+                                    <option value="{{ $tag->id }}"
                                         @if ($todo->tag_id == $tag->id) selected @endif>
                                         {{ $tag->name }}</option>
                                 @endforeach
