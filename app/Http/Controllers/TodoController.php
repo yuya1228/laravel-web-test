@@ -23,8 +23,8 @@ class TodoController extends Controller {
         $user = Auth::user();
         $todos = Todo::paginate();
         $tags = Tag::all();
-        $param = [ 'todos' => $todos, 'user' =>$user, 'tag'=>$tags];
-        return view( 'todo.index', $param,compact('tags'));
+        $param = [ 'todos' => $todos, 'user' =>$user, 'tag'=>$tags ];
+        return view( 'todo.index', $param, compact( 'tags' ) );
     }
 
     public function post( ClientRequest $request ) {
@@ -91,26 +91,43 @@ class TodoController extends Controller {
     }
 
     public function find( Request $request ) {
-        
+        $todo = Todo::query();
+        $text_list = $request->input( 'text' );
+        $tag = $request->input( 'tag_id' );
+        if ( $todo !== null ) {
+            $todo->where( 'text', 'like', '%$todo%' );
+        };
+        if ( $tag !== null ) {
+            $todo->where( 'tag_id', $tag );
+        };
+        $todos = $todo->get();
+        $user = Auth::user();
+        return view( 'todo.search' )->with( [
+            'todos'=>$todos,
+            'user' =>$user,
+        ] );
     }
+
     public function search( Request $request ) {
-        $todos = Todo::where('text',$request->text)->
-        where('tag_id',$request->tag_id)->get();
+        $todos = Todo::where( 'text', $request->text )->
+        where( 'tag_id', $request->tag_id )->get();
         $user = Auth::user();
         $tags = Tag::all();
-        return view('todo.search')->with([
+        return view( 'todo.search' )->with( [
             'todos'=>$todos,
             'user' =>$user,
             'tags'=>$tags,
-        ]);
+        ] );
     }
+
     public function delete( Request $request, $tag_id ) {
         $id = Todo::find( $request->id );
         $id->delete();
-        return redirect( '/search');
+        return redirect( '/search' );
     }
-    public function update_search(Request $request){
+
+    public function update_search( Request $request ) {
         $tags = Tag::all();
-        return view('todo.search',compact('tags'));
+        return view( 'todo.search', compact( 'tags' ) );
     }
 }
