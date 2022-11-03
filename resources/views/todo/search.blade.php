@@ -33,15 +33,15 @@
                 <td>{{ $message }}</td>
             </tr>
         @enderror
-        <form action="{{route('todo.find')}}" method="get">
+        <form action="{{route('todo.search')}}" method="get">
             @csrf
             <input type="search" name="search" class="todo_text">
             <select name="todo_tag" class="life_tag">
-                <option value="タグ1">家事</option>
-                <option value="タグ2">勉強</option>
-                <option value="タグ3">運動</option>
-                <option value="タグ4">食事</option>
-                <option value="タグ5">移動</option>
+                <option value="1">家事</option>
+                <option value="2">勉強</option>
+                <option value="3">運動</option>
+                <option value="4">食事</option>
+                <option value="5">移動</option>
             </select>
             <button type="submit" class="create_button">検索</button>
         </form>

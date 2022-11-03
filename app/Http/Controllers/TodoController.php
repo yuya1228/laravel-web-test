@@ -91,20 +91,18 @@ class TodoController extends Controller {
     }
 
     public function find( Request $request ) {
-        $todo = Todo::where('text',$request->text)->get();
-        return redirect()->route('todo.search',['todo'=>$todo]);
+        
     }
-
     public function search( Request $request ) {
+        $todos = Todo::where('text',$request->text)->
+        where('tag_id',$request->tag_id)->get();
         $user = Auth::user();
-        $todos = Todo::paginate();
-        $tags= Tag::all();
-        $param = [
-            'todos' => $todos,
+        $tags = Tag::all();
+        return view('todo.search')->with([
+            'todos'=>$todos,
             'user' =>$user,
-            'tag'=>$tags,
-        ];
-        return view('todo.search',$param,compact('tags',));
+            'tags'=>$tags,
+        ]);
     }
     public function delete( Request $request, $tag_id ) {
         $id = Todo::find( $request->id );
