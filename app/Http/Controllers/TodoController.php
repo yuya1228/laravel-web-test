@@ -92,8 +92,8 @@ class TodoController extends Controller {
 
     public function find( Request $request ) {
         $todo = Todo::query();
-        $text_list = $request->input( 'text' );
-        $tag = $request->input( 'tag_id' );
+        $text_list = $request->input( 'find' );
+        $tag = $request->input( 'todo_tag' );
         if ( $todo !== null ) {
             $todo->where( 'text', 'like', '%'.$text_list.'%' );
         };
