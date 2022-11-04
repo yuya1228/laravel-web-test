@@ -95,16 +95,18 @@ class TodoController extends Controller {
         $text_list = $request->input( 'text' );
         $tag = $request->input( 'tag_id' );
         if ( $todo !== null ) {
-            $todo->where( 'text', 'like', '%$todo%' );
+            $todo->where( 'text', 'like', '%'.$text_list.'%' );
         };
         if ( $tag !== null ) {
             $todo->where( 'tag_id', $tag );
         };
         $todos = $todo->get();
         $user = Auth::user();
+        $tags = Tag::all();
         return view( 'todo.search' )->with( [
             'todos'=>$todos,
             'user' =>$user,
+            'tags' => $tags
         ] );
     }
 
