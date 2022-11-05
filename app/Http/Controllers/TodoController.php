@@ -66,7 +66,7 @@ class TodoController extends Controller {
     * @return \Illuminate\Http\Response
     */
 
-    public function update( Request $request, Todo $todo ) {
+    public function update( TodosRequest $request, Todo $todo ) {
         $form = $request->all();
         unset( $form[ '_token' ] );
         Todo::where( 'id', $request->id )->update( $form );

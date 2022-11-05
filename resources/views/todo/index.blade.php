@@ -55,7 +55,6 @@
                 <th>更新</th>
                 <th>削除</th>
             </tr>
-            <tr>
                 @foreach ($todos as $todo)
                 <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf

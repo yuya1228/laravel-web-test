@@ -28,15 +28,11 @@
                 </form>
             </ul>
         </div>
-        @error('text')
-            <tr>
-                <td>{{ $message }}</td>
-            </tr>
-        @enderror
         <form action="{{route('todo.find')}}" method="get">
             @csrf
             <input type="search" name="find" class="todo_text">
             <select name="todo_tag" class="life_tag">
+                <option value="0"></option>
                 <option value="1">家事</option>
                 <option value="2">勉強</option>
                 <option value="3">運動</option>
@@ -55,6 +51,11 @@
             </tr>
             <tr>
             @foreach ($todos as $todo)
+            @error('text')
+            <tr>
+                <td>{{ $message }}</td>
+            </tr>
+        @enderror
                 <form action="{{ route('todo.update', ['id' => $todo->id]) }}" method="POST">
                         @csrf
                     <td>{{ $todo->created_at }}</td>
