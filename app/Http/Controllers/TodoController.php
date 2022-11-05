@@ -94,10 +94,10 @@ class TodoController extends Controller {
         $todo = Todo::query();
         $text_list = $request->input( 'find' );
         $tag = $request->input( 'todo_tag' );
-        if ( $todo !== null ) {
+        if ( $todo) {
             $todo->where( 'text', 'like', '%'.$text_list.'%' );
         };
-        if ( $tag !== null ) {
+        if ( $tag) {
             $todo->where( 'tag_id', $tag );
         };
         $todos = $todo->get();
